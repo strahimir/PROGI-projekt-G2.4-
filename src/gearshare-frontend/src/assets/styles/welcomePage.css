@@ -1,0 +1,32 @@
+
+.welcome-page-main-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    flex-direction: column;
+    color: burlywood;
+}
+
+.welcome-page-welcome-container{
+    background: none;
+}
+
+.welcome-page-welcome-container p{
+    text-align: center;
+}
+
+.welcome-page-button-container{
+    background: none;
+    padding: 10px 20px;
+}
+
+.welcome-page-about-button,
+.welcome-page-browse-button,
+.welcome-page-join-button{
+    border-radius: 20px;
+    background: none;
+    border-color: burlywood;
+    padding: 5px;
+    margin: 8px 10px;
+}

@@ -1,0 +1,85 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.87);
+  background: beige;
+}
+
+header, #navbar, footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: burlywood;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: blanchedalmond;
+  padding: 10px;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: burlywood;
+}
+
+.welcome-page-buttons-container {
+  background: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo-image-container,
+.login-container,
+.about-container {
+  background: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+}
+
+.logo-image-container img, h2 {
+  margin: 10px;
+}
+
+.logo-image-container img {
+  width: 60px;
+}
+
+.welcome-page-main-container{
+    display:flex;
+    flex: 1 0;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    flex-direction: column;
+    color: burlywood;
+}
