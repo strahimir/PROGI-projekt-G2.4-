@@ -1,13 +1,15 @@
 import Header from "../../Components/Header"
+import Navbar from "../../Components/Navbar"
+import HomePageMain from "./HomePageMain"
 import Footer from "../../Components/Footer"
 import '../../index.css'
-import HomePageMain from "./HomePageMain"
 
 function HomePage(){
 
     return(
         <>
             <Header />
+            <Navbar />
             <HomePageMain />
             <Footer />
         </>

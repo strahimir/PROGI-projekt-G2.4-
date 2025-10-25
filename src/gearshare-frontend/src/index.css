@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -14,7 +15,9 @@ html, body {
   background: beige;
 }
 
-header, #navbar, footer {
+header,
+#navbar,
+footer {
   flex-shrink: 0;
 }
 
@@ -66,7 +69,7 @@ footer {
   margin: 10px;
 }
 
-.logo-image-container img, h2 {
+.logo-image-container img,h2 {
   margin: 10px;
 }
 
@@ -74,12 +77,127 @@ footer {
   width: 60px;
 }
 
-.welcome-page-main-container{
-    display:flex;
-    flex: 1 0;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    flex-direction: column;
-    color: burlywood;
+.catalog-main-container,
+.welcome-page-main-container {
+  display: flex;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  flex-direction: column;
+  color: burlywood;
+}
+.catalog-main-container{
+  justify-content: flex-start;
+}
+
+.filters-options-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.listing-container{
+  display: flex;
+  justify-content: space-between;
+  background: none;
+  margin: 10px;
+}
+
+.catalog {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 20px;
+  background: brown;
+}
+
+.gear-category {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  color: navajowhite;
+}
+
+.gear-category h2 {
+  font-weight: bolder;
+  font-size: 1.25em;
+}
+
+.gear-category-subcategories {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.listings-list {
+  display: flex;
+}
+
+.filters-options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: burlywood;
+  color: blanchedalmond;
+  padding: 5px;
+}
+
+.display-options-container,
+.display-filters-container{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.listing-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  color: beige;
+  background: brown;
+  white-space: nowrap;
+  /* overflow: hidden; */
+}
+
+.listing-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.listing-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.listing-title{
+  text-align: left;
+  font-weight: bolder;
+}
+
+.listing-seller-info{
+  text-align: left;
+}
+
+.listing-period{
+  text-align: justify;
+}
+
+.listing-price {
+  text-align: right;
+  font-weight: bold;
 }

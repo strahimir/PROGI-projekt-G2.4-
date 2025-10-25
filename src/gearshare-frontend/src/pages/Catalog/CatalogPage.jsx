@@ -1,5 +1,6 @@
 import Header from "../../Components/Header"
 import Navbar from "../../Components/Navbar"
+import CatalogMain from "./CatalogMain"
 import Footer from "../../Components/Footer"
 
 function CatalogPage() {
@@ -7,6 +8,7 @@ function CatalogPage() {
         <>
             <Header />
             <Navbar />
+            <CatalogMain />
             <Footer />
         </>
     )
