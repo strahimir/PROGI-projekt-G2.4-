@@ -1,31 +1,33 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    role VARCHAR(20) CHECK (role IN ('CLIENT', 'MERCHANT', 'ADMIN')) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id UUID PRIMARY KEY,
+    provider VARCHAR(50) NOT NULL,
+    provider_id VARCHAR(255) NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    subscriptionStart DATE DEFAULT NULL,
+    subscriptionEnd DATE DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    isBlocked BOOLEAN DEFAULT FALSE, 
+    UNIQUE (provider, provider_id)
 );
 
 CREATE TABLE merchants (
-    id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
     store_name VARCHAR(100) NOT NULL,
-    address VARCHAR(200) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     contact_phone VARCHAR(50),
-    membership_paid BOOLEAN DEFAULT FALSE,
-    membership_expires DATE,
+    contact_email VARCHAR(255),
     average_rating NUMERIC(3,2) DEFAULT 0
 );
 
 CREATE TABLE clients (
-    id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-    location VARCHAR(100),
-    contact_email VARCHAR(100),
+    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    contact_email VARCHAR(255),
     penalty_points INT DEFAULT 0
 );
 
 CREATE TABLE administrators (
-    id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
     can_manage_users BOOLEAN DEFAULT TRUE,
     can_manage_payments BOOLEAN DEFAULT TRUE
 );
