@@ -13,5 +13,4 @@ function Listings({ listingsContainerStyle }) {
         </div>
     )
 }
-
 export default Listings
