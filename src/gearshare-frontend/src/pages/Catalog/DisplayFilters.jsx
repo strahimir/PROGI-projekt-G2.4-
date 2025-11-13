@@ -1,5 +1,3 @@
-
-
 function DisplayFilters(){
 
     // nesto ne valja s ovim
