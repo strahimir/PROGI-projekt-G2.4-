@@ -4,8 +4,6 @@ CREATE TABLE users (
     provider_id VARCHAR(255) NOT NULL,
     username VARCHAR(100) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    subscriptionStart DATE DEFAULT NULL,
-    subscriptionEnd DATE DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     isBlocked BOOLEAN DEFAULT FALSE, 
     UNIQUE (provider, provider_id)
@@ -13,17 +11,13 @@ CREATE TABLE users (
 
 CREATE TABLE merchants (
     id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    subscriptionStart DATE DEFAULT NULL,
+    subscriptionEnd DATE DEFAULT NULL,
     store_name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
     contact_phone VARCHAR(50),
     contact_email VARCHAR(255),
     average_rating NUMERIC(3,2) DEFAULT 0
-);
-
-CREATE TABLE clients (
-    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-    contact_email VARCHAR(255),
-    penalty_points INT DEFAULT 0
 );
 
 CREATE TABLE administrators (
@@ -34,7 +28,7 @@ CREATE TABLE administrators (
 
 CREATE TABLE equipment (
     id SERIAL PRIMARY KEY,
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
+    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     available_from DATE,

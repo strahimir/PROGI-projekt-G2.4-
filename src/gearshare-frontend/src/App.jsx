@@ -6,7 +6,9 @@ import LoginPage from './pages/Login/LoginPage'
 import CatalogPage from './pages/Catalog/CatalogPage'
 import ListingPage from './pages/Listing/ListingPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
-import ProfilePage from './pages/Profile/ProfilePage'
+import ProfilePageClient from './pages/Profile/Klijent/ProfilePageClient'
+import ProfilePageTrgovac from './pages/Profile/Trgovac/ProfilePageTrgovac'
+import CreateAdPage from './pages/Profile/Trgovac/CreateAdPage'
 import AboutPage from './pages/About/AboutPage'
 import InboxPage from './pages/Inbox/InboxPage'
 import ChatbotPage from './pages/Chatbot/ChatbotPage'
@@ -53,8 +55,16 @@ function App() {
           element={<CheckoutPage />}
         />
         <Route
-          path='profile'
-          element={<ProfilePage />}
+          path='profile1'
+          element={<ProfilePageTrgovac />}
+        />
+        <Route
+          path='profile2'
+          element={<ProfilePageClient />}
+        />
+        <Route
+          path='profile1/create-ad'
+          element={<CreateAdPage />}
         />
         <Route
           path='about'
