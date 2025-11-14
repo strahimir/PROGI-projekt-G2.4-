@@ -3,14 +3,14 @@ Projekt iz predmeta "Programsko inženjerstvo"
 
 GearShare je web platforma za iznajmljivanje sezonske sportske opreme, koja omogućuje trgovcima objavu oglasa, a korisnicima jednostavno pretraživanje i rezervaciju opreme.
 
-# Glavne funkcionalnosti
+## Glavne funkcionalnosti
 - Registracija i prijava korisnika (OAuth 2.0)
 - Pretraživanje i filtriranje oglasa
 - Rezervacija opreme i plaćanje
 - Ocjene i recenzije trgovaca
 - Administracija korisnika i članarina
 
-# Tehnologije
+## Tehnologije
 - Frontend: React.js
 - Backend: Spring Boot
 - Baza podataka: PostgreSQL
@@ -18,9 +18,9 @@ GearShare je web platforma za iznajmljivanje sezonske sportske opreme, koja omog
 - Autentifikacija: OAuth 2.0
   
 Pristup stranici: 
-Wiki i dokumentacija: [GitHub Wiki](https://github.com/username/GearShare.wiki)
+Wiki i dokumentacija: [GitHub Wiki](https://github.com/strahimir/GearShare-Tim-AIGHT/wiki)
 
-# Autori
+## Autori
 - Matija Antun Dürrigl
 - Nikola Kramarić
 - Potjeh Jureković
