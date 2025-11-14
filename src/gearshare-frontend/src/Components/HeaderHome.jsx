@@ -1,0 +1,80 @@
+import { Link, useNavigate } from 'react-router';
+import '../index.css';
+import gearShareLogo from '../assets/images/gearshare-logo.png';
+import { useState } from 'react';
+
+function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [location, setLocation] = useState('');
+  const [product, setProduct] = useState('');
+  const navigate = useNavigate();
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleSearch = () => setSearchOpen(!searchOpen);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!location && !product) return;
+    navigate(`/catalog?location=${encodeURIComponent(location)}&product=${encodeURIComponent(product)}`);
+    setLocation('');
+    setProduct('');
+    setSearchOpen(false);
+  };
+
+  return (
+    <header>
+      <div className="logo-image-container">
+        <img src={gearShareLogo} alt="Logo" />
+        <h2>GearShare</h2>
+      </div>
+
+      <div className="welcome-page-buttons-container">
+        <div className="right-controls">
+          {/* Search icon i form */}
+          <div className="search-container">
+            <div className="search-icon" onClick={toggleSearch}>🔍</div>
+            {searchOpen && (
+              <form className="header-search-form" onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Lokacija"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Proizvod"
+                  value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                />
+                <button type="submit">Pretraži</button>
+              </form>
+            )}
+          </div>
+
+          <div className="login-container">
+            <Link to='/profile1' className="profile-icon">Profil</Link>
+          </div>
+
+          {/* Hamburger menu */}
+          <div className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      {menuOpen && (
+        <nav className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+          <Link to="/about">O nama</Link>
+          <Link to="/chatbot">Chatbot</Link>
+          <Link to="/catalog">Katalog</Link>
+        </nav>
+      )}
+    </header>
+  );
+}
+
+export default Header;
