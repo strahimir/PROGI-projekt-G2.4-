@@ -1,80 +1,76 @@
-CREATE TABLE users (
-    id UUID PRIMARY KEY,
-    provider VARCHAR(50) NOT NULL,
-    provider_id VARCHAR(255) NOT NULL,
-    username VARCHAR(100) UNIQUE NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    isBlocked BOOLEAN DEFAULT FALSE, 
-    UNIQUE (provider, provider_id)
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE county (
+    countycode VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE merchants (
-    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-    subscriptionStart DATE DEFAULT NULL,
-    subscriptionEnd DATE DEFAULT NULL,
-    store_name VARCHAR(100) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    contact_phone VARCHAR(50),
-    contact_email VARCHAR(255),
-    average_rating NUMERIC(3,2) DEFAULT 0
-);
-
-CREATE TABLE administrators (
-    id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-    can_manage_users BOOLEAN DEFAULT TRUE,
-    can_manage_payments BOOLEAN DEFAULT TRUE
-);
-
-CREATE TABLE equipment (
-    id SERIAL PRIMARY KEY,
-    merchant_id UUID REFERENCES merchants(id) ON DELETE CASCADE,
+CREATE TABLE city (
+    postalcode VARCHAR(15) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    description TEXT,
-    available_from DATE,
-    available_until DATE,
-    price_per_day NUMERIC(10,2) NOT NULL,
-    deposit NUMERIC(10,2),
-    image_url TEXT,
-    location VARCHAR(150) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    countycode VARCHAR(10) REFERENCES county(countycode) ON DELETE RESTRICT
 );
 
-CREATE TABLE reservations (
-    id SERIAL PRIMARY KEY,
-    client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-    equipment_id INT REFERENCES equipment(id) ON DELETE CASCADE,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    total_price NUMERIC(10,2) NOT NULL,
-    status VARCHAR(20) CHECK (status IN ('PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED')) DEFAULT 'PENDING',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE client (
+    clientuuid UUID PRIMARY KEY,
+    username VARCHAR(30) UNIQUE NOT NULL CHECK (username ~ '^[A-Za-z_][A-Za-z0-9._]*$'),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30),
+    phonenumber VARCHAR(20) DEFAULT NULL,  
+    isSuspended BOOLEAN DEFAULT FALSE,
+    suspensionLength INTEGER DEFAULT NULL,
+    suspensionStartDateTime TIMESTAMP DEFAULT NULL,
+    dateJoined DATE NOT NULL DEFAULT CURRENT_DATE,
+    subscriptionStartDateTime TIMESTAMP DEFAULT NULL,
+    subscriptionEndDateTime TIMESTAMP DEFAULT NULL,
+    provider VARCHAR(50),
+    providerId VARCHAR(255)    
 );
 
-CREATE TABLE reviews (
-    id SERIAL PRIMARY KEY,
-    reservation_id INT REFERENCES reservations(id) ON DELETE CASCADE,
-    client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
-    equipment_id INT REFERENCES equipment(id) ON DELETE CASCADE,
-    rating INT CHECK (rating BETWEEN 1 AND 5),
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+CREATE INDEX idx_client_email ON client(email);
+CREATE INDEX idx_client_username ON client(username);
+
+CREATE TABLE address (
+    clientuuid UUID PRIMARY KEY REFERENCES client(clientuuid) ON DELETE CASCADE,
+    streetname VARCHAR(255) NOT NULL,
+    streetnumber VARCHAR(10) NOT NULL CHECK (streetnumber ~ '^[0-9]+[A-Za-z]?$'),
+    aptnumber VARCHAR(10) DEFAULT NULL,
+    postalcode VARCHAR(15) NOT NULL REFERENCES city(postalcode) ON DELETE RESTRICT,
+    countycode VARCHAR(10) NOT NULL REFERENCES county(countycode) ON DELETE RESTRICT
 );
 
-CREATE TABLE reports (
-    id SERIAL PRIMARY KEY,
-    reported_client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
-    description TEXT NOT NULL,
-    status VARCHAR(20) CHECK (status IN ('OPEN', 'REVIEWED', 'RESOLVED')) DEFAULT 'OPEN',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    reviewed_by INT REFERENCES administrators(id)
+CREATE TABLE listing (
+    listinguuid UUID PRIMARY KEY,  
+    selleruuid UUID NOT NULL REFERENCES client(clientuuid) ON DELETE CASCADE,
+    title VARCHAR(150) NOT NULL,
+    description TEXT DEFAULT NULL,
+    postedDateTime TIMESTAMP NOT NULL DEFAULT NOW(),
+    availabilityPeriodStart TIMESTAMP DEFAULT NULL,
+    availabilityPeriodEnd TIMESTAMP DEFAULT NULL,
+    minimumRentalDays INTEGER DEFAULT 1,
+    pricePerMinimumPeriod NUMERIC(7,2) NOT NULL CHECK (pricePerMinimumPeriod >= 0),
+    season VARCHAR(50) DEFAULT NULL,
+    equipmenttype VARCHAR(50) NOT NULL,
+    equipmentcondition VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE membership_settings (
-    id SERIAL PRIMARY KEY,
-    annual_fee NUMERIC(10,2) NOT NULL,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_by INT REFERENCES administrators(id)
+CREATE INDEX idx_listing_seller ON listing(selleruuid);
+
+CREATE TABLE rental (
+    clientuuid UUID NOT NULL REFERENCES client(clientuuid) ON DELETE CASCADE,
+    listinguuid UUID NOT NULL REFERENCES listing(listinguuid) ON DELETE CASCADE,
+    selleruuid UUID NOT NULL REFERENCES client(clientuuid) ON DELETE CASCADE,
+    rentingStartDateTime TIMESTAMP NOT NULL,
+    rentingEndDateTime TIMESTAMP NOT NULL,
+    rating SMALLINT CHECK (rating BETWEEN 1 AND 5) DEFAULT NULL,
+    review TEXT DEFAULT NULL,
+    PRIMARY KEY (clientuuid, listinguuid, selleruuid, rentingStartDateTime)
 );
+
+CREATE UNIQUE INDEX one_rating_per_client_per_listing
+ON rental(clientuuid, listinguuid)
+WHERE rating IS NOT NULL;
+
