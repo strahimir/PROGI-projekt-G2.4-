@@ -54,7 +54,7 @@ function Header() {
           </div>
 
           <div className="login-container">
-            <Link to='/profile' className="profile-icon">Profil</Link>
+            <Link to='/profile1' className="profile-icon">Profil</Link>
           </div>
 
           {/* Hamburger menu */}
