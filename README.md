@@ -17,7 +17,7 @@ GearShare je web platforma za iznajmljivanje sezonske sportske opreme, koja omog
 - Deploy: Railway (backend i baza), Render (frontend)
 - Autentifikacija: OAuth 2.0
   
-Pristup stranici: 
+Pristup stranici: https://gearshare-tim-aight.onrender.com
 Wiki i dokumentacija: [GitHub Wiki](https://github.com/strahimir/GearShare-Tim-AIGHT/wiki)
 
 ## Autori
