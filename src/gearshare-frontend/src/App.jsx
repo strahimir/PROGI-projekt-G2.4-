@@ -7,7 +7,7 @@ import CatalogPage from './pages/Catalog/CatalogPage'
 import ListingPage from './pages/Listing/ListingPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
 import ProfilePageClient from './pages/Profile/Klijent/ProfilePageClient'
-import ProfilePageTrgovac from './pages/Profile/Trgovac/ProfilePageTrgovac'
+import ProfilePage from './pages/Profile/ProfilePage'
 import CreateAdPage from './pages/Profile/Trgovac/CreateAdPage'
 import AboutPage from './pages/About/AboutPage'
 import InboxPage from './pages/Inbox/InboxPage'
@@ -55,15 +55,15 @@ function App() {
           element={<CheckoutPage />}
         />
         <Route
-          path='profile1'
-          element={<ProfilePageTrgovac />}
+          path='profile'
+          element={<ProfilePage />}
         />
-        <Route
+        {/* <Route
           path='profile2'
           element={<ProfilePageClient />}
-        />
+        /> */}
         <Route
-          path='profile1/create-ad'
+          path='profile/create-ad'
           element={<CreateAdPage />}
         />
         <Route
