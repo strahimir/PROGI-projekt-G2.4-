@@ -21,12 +21,21 @@ Pristup stranici: https://gearshare-tim-aight.onrender.com
 
 Deployan backend: https://gearshare-tim-aight-fork-backend-deploy-dev.up.railway.app
 
-Za lokalni pristup stranici:
+## Za lokalni pristup stranici:
 
-frontend - npm install
+Frontend - npm install, npm run dev
 
-potrebni podatci za pokretanje stranice -
-CLIENT_ID=472011653271-v89pul1lhh0jksvfmtdbq4m28ier0ng6.apps.googleusercontent.com,
+Potrebni podatci za pokretanje stranice:
+
+DATABASE_URL=jdbc:postgresql://nozomi.proxy.rlwy.net:12927/railway
+
+DATABASE_PASS=QFLmqVPjUlnkZGBVvRNtgpWokcaJTcnD
+
+BACKEND_URL=http://localhost:8080
+
+FRONTEND_URL=http://localhost:5173
+
+CLIENT_ID=472011653271-v89pul1lhh0jksvfmtdbq4m28ier0ng6.apps.googleusercontent.com
 
 CLIENT_SECRET=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
 
