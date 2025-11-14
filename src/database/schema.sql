@@ -1,6 +1,3 @@
-
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 CREATE TABLE county (
     countycode VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL
