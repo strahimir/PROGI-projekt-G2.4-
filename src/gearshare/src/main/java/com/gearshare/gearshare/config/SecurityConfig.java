@@ -29,7 +29,7 @@ public class SecurityConfig {
                                         .requestMatchers("/welcome"
                                                         , "/oauth2/**" 
                                                         , "/login/**"
-                                                        , "/api/**" // Ova linija autorizira sve API zahtjeve i sluzi samo za development. Za production ju treba zakomentirati
+                                                        //, "/api/**" // Ova linija autorizira sve API zahtjeve i sluzi samo za development. Za production ju treba zakomentirati
                                                         ).permitAll()
                                         .anyRequest().authenticated()
                 )
