@@ -55,14 +55,14 @@ function CreateAdPage() {
     }
 
     
-    const result = await createListing(user.clientUUID, listingData);
+    const result = await createListing(user.clientUUID, listingData)
 
     if (result) {
-      console.log("Listing created successfully:", result);
+      console.log("Listing created successfully:", result)
       
-      window.location.href = "/profile";
+      window.location.href = "/profile"
     } else {
-      console.error("Failed to create listing.");
+      console.error("Failed to create listing.")
     }
   }
 
