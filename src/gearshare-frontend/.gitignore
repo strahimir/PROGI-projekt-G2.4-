@@ -25,6 +25,8 @@ dist-ssr
 
 # Misc
 *.env
-*.env.example
 *.env.local
+*.env.development
 *.env.staging
+*.env.production
+!.env.example

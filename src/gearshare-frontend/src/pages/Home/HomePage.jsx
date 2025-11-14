@@ -1,4 +1,4 @@
-import HeaderHome from "../../Components/HeaderHome"
+import Header from "../../Components/Header"
 import HomePageMain from "./HomePageMain"
 import Footer from "../../Components/Footer"
 import '../../index.css'
@@ -7,7 +7,7 @@ function HomePage(){
 
     return(
         <>
-            <HeaderHome />
+            <Header />
             <HomePageMain />
             <Footer />
         </>

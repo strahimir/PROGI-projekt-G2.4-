@@ -4,38 +4,49 @@ import HomePage from './pages/Home/HomePage'
 import WelcomePage from './pages/Welcome/WelcomePage'
 import LoginPage from './pages/Login/LoginPage'
 import CatalogPage from './pages/Catalog/CatalogPage'
-import ProductPage from './pages/Product/ProductPage'
+import ListingPage from './pages/Listing/ListingPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
 import ProfilePage from './pages/Profile/ProfilePage'
 import AboutPage from './pages/About/AboutPage'
 import InboxPage from './pages/Inbox/InboxPage'
 import ChatbotPage from './pages/Chatbot/ChatbotPage'
 import ForumPage from './pages/Forum/ForumPage'
+import RootRedirect from './RootRedirect'
+import { useAuth } from './hooks/useAuth'
+import { Navigate } from 'react-router'
 
 function App() {
+
+  const { user, loading, handleLogin, handleLogout } = useAuth()
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+
 
   return (
     <>
       <Routes>
         <Route
           path='/'
+          element={<RootRedirect />}
+        /><Route
+          path='home'
           element={<HomePage />}
         />
         <Route
           path='welcome'
           element={<WelcomePage />}
         />
-        <Route
+        {/* <Route
           path='login'
           element={<LoginPage />}
-        />
+        /> */}
         <Route
           path='catalog'
           element={<CatalogPage />}
         />
         <Route
-          path='product'
-          element={<ProductPage />}
+          path='listing'
+          element={<ListingPage />}
         />
         <Route
           path='checkout'

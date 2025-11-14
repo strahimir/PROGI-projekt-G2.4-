@@ -3,6 +3,21 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input, textarea, select { font-family:inherit; }
+
+button { 
+  border-radius: 6px;
+  box-shadow: none;
+  border: none;
+  background: #6D94C5;
+  color: beige;
 }
 
 #root {
@@ -99,6 +114,7 @@ footer {
   color: #000;
 }
 
+.profile-main-container, /*LL*/
 .welcome-page-main-container {
   display: flex;
   flex: 1 0;
@@ -108,6 +124,53 @@ footer {
   flex-direction: column;
   color: #6D94C5;
 }
+
+ /*LL start 1*/
+
+.profile-main-container{
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.user-profile-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+  padding: 10px 15px;
+  background: #6D94C5;
+  color: navajowhite;
+}
+
+.profile-picture-container{
+  background: none;
+  margin: 10px;
+  display: flex;
+  width: 256px;
+  height: 256px;
+}
+
+.profile-picture{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+
+}
+
+.user-information-container{
+  display: flex;
+}
+
+.user-listings-container{
+  display: flex;
+  flex: 1 0;
+  justify-content: center;
+  align-items: start;
+}
+
+ /*LL end 1*/
 
 .gear-category {
   display: flex;
@@ -348,6 +411,7 @@ footer {
   width: 35px;
   height: 35px;
   background-color: #F5EFE6;
+  color: #6D94C5;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -385,4 +449,9 @@ footer {
 
 .header-search-form input:focus {
   border-color: #007bff;
+}
+
+.header-search-form button{
+  padding: 2px;
+  border-radius: 50%;
 }

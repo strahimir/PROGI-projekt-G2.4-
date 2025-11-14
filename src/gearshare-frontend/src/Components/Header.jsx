@@ -2,8 +2,13 @@ import { Link, useNavigate } from 'react-router';
 import '../index.css';
 import gearShareLogo from '../assets/images/gearshare-logo.png';
 import { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { Search } from 'lucide-react';
 
 function Header() {
+
+  const { user, loading, handleLogin, handleLogout } = useAuth()
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [location, setLocation] = useState('');
@@ -32,29 +37,43 @@ function Header() {
       <div className="welcome-page-buttons-container">
         <div className="right-controls">
           {/* Search icon i form */}
-          <div className="search-container">
-            <div className="search-icon" onClick={toggleSearch}>🔍</div>
-            {searchOpen && (
-              <form className="header-search-form" onSubmit={handleSearch}>
-                <input
-                  type="text"
-                  placeholder="Lokacija"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Proizvod"
-                  value={product}
-                  onChange={(e) => setProduct(e.target.value)}
-                />
-                <button type="submit">Pretraži</button>
-              </form>
-            )}
-          </div>
+
+          {user &&
+            <div className="search-container">
+              <div className="search-icon" onClick={toggleSearch}> <Search /> </div>
+              {searchOpen && (
+                <form className="header-search-form" onSubmit={handleSearch}>
+                  <input
+                    type="text"
+                    placeholder="Lokacija"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Proizvod"
+                    value={product}
+                    onChange={(e) => setProduct(e.target.value)}
+                  />
+                  <button type="submit">Pretraži</button>
+                </form>
+              )}
+            </div>
+          }
 
           <div className="login-container">
-            <Link to='/login'>Prijavi se</Link>
+            {/* <Link to='/login'>Prijavi se</Link> */}
+            {!user
+              ? (
+                <div className='profile-icon' onClick={handleLogin}>Prijavi se</div>)
+              : (
+                <>
+                  <div className='profile-icon' onClick={handleLogout}>Odjavi se</div>
+                  <div className="login-container">
+                    <Link to='/profile' className="profile-icon">Profil</Link>
+                  </div>
+                </>)
+            }
           </div>
 
           {/* Hamburger menu */}
@@ -66,14 +85,16 @@ function Header() {
         </div>
       </div>
 
-      {menuOpen && (
-        <nav className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-          <Link to="/about">O nama</Link>
-          <Link to="/chatbot">Chatbot</Link>
-          <Link to="/catalog">Katalog</Link>
-        </nav>
-      )}
-    </header>
+      {
+        menuOpen && (
+          <nav className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+            <Link to="/about">O nama</Link>
+            <Link to="/chatbot">Chatbot</Link>
+            <Link to="/catalog">Katalog</Link>
+          </nav>
+        )
+      }
+    </header >
   );
 }
 
