@@ -1,0 +1,55 @@
+
+.login-root{
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: brown;
+}
+
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.personal-info,
+.login-info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px;
+    margin: 20px;
+}
+
+label,
+input{
+    margin: 10px;
+}
+
+label{
+    align-self: flex-start;
+    display: flex 1 0;
+}
+
+input{
+    border-radius: 5px;
+    border: none;
+}
+
+
+

@@ -1,0 +1,460 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input, textarea, select { font-family:inherit; }
+
+button { 
+  border-radius: 6px;
+  box-shadow: none;
+  border: none;
+  background: #6D94C5;
+  color: beige;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+  color:#F5EFE6;
+  background: beige;
+}
+
+header,
+#navbar,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: #6D94C5; /* plava boja headera */
+  z-index: 1100; /* iznad menija */
+  position: relative; /* da hamburger i meni rade u odnosu na header */
+  
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #E8DFCA;
+  padding: 10px;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #CBDCEB;
+}
+
+.welcome-page-buttons-container {
+  background: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo-image-container,
+.login-container,
+.about-container {
+  background: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+}
+
+.logo-image-container img,h2 {
+  margin: 10px;
+}
+
+.logo-image-container img {
+  width: 60px;
+}
+
+.login-container a {
+  text-decoration: none;      
+  background-color: #F5EFE6;  
+  color: #111;                
+  padding: 0.5rem 1rem;       
+  border-radius: 6px;         
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;    
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.login-container a:hover {
+  background-color: #e0dcd3; 
+  color: #000;
+}
+
+.profile-main-container, /*LL*/
+.welcome-page-main-container {
+  display: flex;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  flex-direction: column;
+  color: #6D94C5;
+}
+
+ /*LL start 1*/
+
+.profile-main-container{
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.user-profile-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+  padding: 10px 15px;
+  background: #6D94C5;
+  color: navajowhite;
+}
+
+.profile-picture-container{
+  background: none;
+  margin: 10px;
+  display: flex;
+  width: 256px;
+  height: 256px;
+}
+
+.profile-picture{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+
+}
+
+.user-information-container{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.user-listings-container{
+  display: flex;
+  flex: 1 0;
+  justify-content: center;
+  align-items: start;
+}
+
+ /*LL end 1*/
+
+.gear-category {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  color: navajowhite;
+}
+
+.gear-category h2 {
+  font-weight: bolder;
+  font-size: 1.25em;
+}
+
+.gear-category-subcategories {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.listings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.filters-options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: burlywood;
+  color: blanchedalmond;
+  padding: 5px;
+}
+
+.display-options-container,
+.display-filters-container{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.listing-container {
+  margin: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  color: beige;
+  background: brown;
+  white-space: nowrap;
+  /* overflow: hidden; */
+}
+
+.listing-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.listing-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.listing-title{
+  text-align: left;
+  font-weight: bolder;
+}
+
+.listing-seller-info{
+  text-align: left;
+}
+
+.listing-period{
+  text-align: justify;
+}
+
+.listing-price {
+  text-align: right;
+  font-weight: bold;
+}
+
+.list-container {
+  width: 100%;
+}
+
+/* Grid / list stil za Listings */
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.listings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Kartice oglasa unutar Listings */
+.listing-card {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Naslovi, cijene itd. unutar listinga */
+.listing-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.listing-card .price {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.listing-card .description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+
+
+/* Container za dugmad i hamburger */
+.welcome-page-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Hamburger osnovni stil */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #F5EFE6; /* boja linija hamburgera */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animacija kad je otvoren - X */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu {
+  position: fixed; 
+  top: 100px; 
+  right: 0;
+  height: calc(100vh - 70px); 
+  width: 250px;
+  background-color: #6D94C5;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  gap: 1rem;
+  z-index: 1000;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+/* Kad je meni otvoren */
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover {
+  color: white; /* hover boja linkova */
+}
+
+
+
+/* Desni dio headera */
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Search ikona sa pozadinom */
+.search-icon {
+  width: 35px;
+  height: 35px;
+  background-color: #F5EFE6;
+  color: #6D94C5;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s;
+}
+
+.search-icon:hover {
+  background-color: #e0dcd3;
+}
+
+/* Search form */
+.header-search-form {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  right: 45px; /* lijevo od ikone */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #F5EFE6;
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 1200;
+}
+
+.header-search-form input {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.header-search-form input:focus {
+  border-color: #007bff;
+}
+
+.header-search-form button{
+  padding: 2px;
+  border-radius: 50%;
+}
