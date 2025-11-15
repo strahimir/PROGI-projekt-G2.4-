@@ -1,5 +1,5 @@
-# PROGI-projekt-G2.4
-Projekt iz predmeta "Programsko inženjerstvo"
+# GearShare-Tim-AIGHT
+(Projekt iz predmeta "Programsko inženjerstvo")
 
 GearShare je web platforma za iznajmljivanje sezonske sportske opreme, koja omogućuje trgovcima objavu oglasa, a korisnicima jednostavno pretraživanje i rezervaciju opreme.
 
@@ -66,8 +66,8 @@ $ ./mvnw spring-boot:run
 Wiki i dokumentacija: [GitHub Wiki](https://github.com/strahimir/GearShare-Tim-AIGHT/wiki)
 
 ## Autori
-- Matija Antun Dürrigl
-- Nikola Kramarić
-- Potjeh Jureković
-- Laura Lučin
-- Lani Miliša
+- [Matija Antun Dürrigl](https://github.com/digi235)
+- [Nikola Kramarić](https://github.com/Kramaric79)
+- [Potjeh Jureković](https://github.com/PotjehJurekovic)
+- [Laura Lučin](https://github.com/strahimir)
+- [Lani Miliša](https://github.com/Lani931)
