@@ -15,7 +15,7 @@ GearShare je web platforma za iznajmljivanje sezonske sportske opreme, koja omog
 - Backend: Spring Boot
 - Baza podataka: PostgreSQL
 - Deploy: Railway (backend i baza), Render (frontend)
-- Autentifikacija: OAuth 2.0
+- Autentifikacija: Google OAuth 2.0
   
 Pristup stranici: https://gearshare-tim-aight.onrender.com
 
@@ -23,9 +23,23 @@ Deployan backend: https://gearshare-tim-aight-fork-backend-deploy-dev.up.railway
 
 ## Za lokalni pristup stranici:
 
-Frontend - npm install, npm run dev
+### Frontend
 
-Potrebni podatci za pokretanje stranice:
+Pozicionirajte se u direktorij src/gearshare-frontend
+
+U tom direktoriju stvorite datoteku .env.development i u nju pohranite sljedeće dvije vrijednosti:
+
+VITE_API_BASE_URL=http://localhost:8080/api
+
+VITE_BACKEND_URL=http://localhost:8080
+
+Potom pokrenite sljedeću naredbu:
+
+$ npm install && npm run dev
+
+### Backend
+
+U datoteku .env koju je potrebno stvoriti u direktoriju src/gearshare unijeti sljedeće podatke:
 
 DATABASE_URL=jdbc:postgresql://nozomi.proxy.rlwy.net:12927/railway
 
