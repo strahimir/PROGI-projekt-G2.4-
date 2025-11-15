@@ -39,7 +39,9 @@ $ npm install && npm run dev
 
 ### Backend
 
-U datoteku .env koju je potrebno stvoriti u direktoriju src/gearshare unijeti sljedeće podatke:
+Preduvjet za pokretanje backenda je instaliranje JDK 17 i Apache Maven.
+
+Potrebno je stvoriti datoteku .env u direktoriju src/gearshare te u nju unijeti sljedeće podatke:
 
 DATABASE_URL=jdbc:postgresql://nozomi.proxy.rlwy.net:12927/railway
 
@@ -52,6 +54,14 @@ FRONTEND_URL=http://localhost:5173
 CLIENT_ID=472011653271-v89pul1lhh0jksvfmtdbq4m28ier0ng6.apps.googleusercontent.com
 
 CLIENT_SECRET=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
+
+Ukoliko ste Windows korisnik, iz direktorija src/gearshare pokrenite sljedeću naredbu u terminalu:
+
+$ mvnw.cmd spring-boot:run
+
+Za Linux i Mac korisnike, naredba glasi
+
+$ ./mvnw spring-boot:run
 
 Wiki i dokumentacija: [GitHub Wiki](https://github.com/strahimir/GearShare-Tim-AIGHT/wiki)
 
