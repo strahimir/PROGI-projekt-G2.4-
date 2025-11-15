@@ -26,11 +26,7 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests(authorize ->
                                 authorize
-                                        .requestMatchers("/welcome"
-                                                        , "/oauth2/**" 
-                                                        , "/login/**"
-                                                        //, "/api/**" // Ova linija autorizira sve API zahtjeve i sluzi samo za development. Za production ju treba zakomentirati
-                                                        ).permitAll()
+                                        .requestMatchers("/welcome", "/oauth2/**", "/login/**").permitAll()  //, "/api/**" // Ova linija autorizira sve API zahtjeve i sluzi samo za development. Za production ju treba zakomentirati
                                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 ->
