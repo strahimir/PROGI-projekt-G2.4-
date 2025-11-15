@@ -6,7 +6,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 export const loginWithGoogle = () => {
 
-    window.location.href = `${BACKEND_URL}/login/oauth2/authorization/google`
+    window.location.href = `${BACKEND_URL}/oauth2/authorization/google`
 }
 
 
