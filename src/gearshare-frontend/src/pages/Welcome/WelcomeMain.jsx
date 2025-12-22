@@ -2,16 +2,20 @@ import { Link } from 'react-router'
 import '../../index.css'
 import '../../assets/styles/welcomePage.css'
 import TopCategories from '../../Components/TopCategories'
+import GuideCarousel from '../../Components/GuideCarousel'
+import WelcomeBanner from './WelcomeBanner'
 
 function WelcomeMain() {
   return (
     <main className="welcome-main">
       {/* Sekcija 1: Najprodavanije kategorije */}
+      <WelcomeBanner></WelcomeBanner>
+      <GuideCarousel></GuideCarousel>
 
       <TopCategories />
 
 
-      {/* Sekcija 2: Kako funkcionira GearShare */}
+      Sekcija 2: Kako funkcionira GearShare
       <section className="how-it-works">
         <h2>Kako funkcionira GearShare?</h2>
         <div className="steps-container">

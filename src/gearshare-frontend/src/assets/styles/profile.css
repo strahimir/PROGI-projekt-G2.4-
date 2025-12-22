@@ -83,12 +83,13 @@
 
 
 .add-ad-button,
-.submit-ad-button {
+.submit-ad-button,
+.edit-profile-button {
     padding: 12px 25px;
     font-size: 16px;
     font-weight: 500;
-    color: #fff;
-    background: #6D94C5;
+    color: #6D94C5;
+    background: beige;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -97,7 +98,8 @@
 }
 
 .add-ad-button:hover,
-.submit-ad-button:hover {
+.submit-ad-button:hover,
+.edit-profile-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
