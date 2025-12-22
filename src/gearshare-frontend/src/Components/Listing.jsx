@@ -1,41 +1,39 @@
 import '../index.css'
 
-function Listing() { // todo: add props 
-
-    const dummyProduct = {
-        img: './src/assets/images/placeholder_img.png',
-        datePosted: 'MM/DD/YYYY',
-        dateEnding: 'MM/DD/YYYY',
-        title: 'title',
-        price: 6767,
-        seller: 'seller12345',
-        rating: 49
-    }
-
+function Listing({ listing, handleDelete }) {
     return (
         <div className="listing-container">
             <div className="listing-image-container">
-                <img className="listing-image"
-                    src={dummyProduct.img} />
+                <img className="listing-image" src={listing.img || './src/assets/images/placeholder_img.png'} />
             </div>
 
             <div className="listing-title">
-                {dummyProduct.title}
+                {listing.title}
             </div>
-
+            <p>
+                {listing.description}
+            </p>
+{/*         
             <div className="listing-seller-info">
-                {dummyProduct.seller} ({(dummyProduct.rating / 10).toFixed(2)})
-            </div>
+                {listing.seller} ({(listing.rating / 10).toFixed(2)})
+            </div> */}
 
             <div className="listing-period">
-                {dummyProduct.datePosted} - {dummyProduct.dateEnding}
+                {listing.availabilityPeriodStart} - {listing.availabilityPeriodEnd}
             </div>
 
             <div className="listing-price">
-                {(dummyProduct.price / 100).toFixed(2)}€ po danu
+                {listing.pricePerMinimumPeriod}€ / {listing.minimumRentalDays} dan(a)
             </div>
+
+            <div className="listing-price">
+                {listing.equipmentType}; Stanje : {listing.equipmentCondition}
+            </div>
+            
+            <button onClick={() => handleDelete(listing.listingUUID)}>Obriši oglas</button>
         </div>
     )
 }
+
 
 export default Listing

@@ -5,7 +5,7 @@ function ProfilePageTrgovacMain() {
   const navigate = useNavigate();
 
   const handleAddAd = () => {
-    navigate("/profile1/create-ad");
+    navigate("/profile/create-ad");
   };
 
   return (
