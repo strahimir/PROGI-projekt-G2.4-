@@ -28,11 +28,26 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(withDefaults())
+
+                .exceptionHandling(ex -> ex
+                .defaultAuthenticationEntryPointFor(
+                new org.springframework.security.web.authentication.HttpStatusEntryPoint(org.springframework.http.HttpStatus.UNAUTHORIZED),
+                new org.springframework.security.web.util.matcher.AntPathRequestMatcher("/api/**")
+                    )
+                )
                 .authorizeHttpRequests(authorize ->
                                 authorize
-                                        .requestMatchers("/welcome", "/oauth2/**", "/login/**").permitAll()
-                                        .requestMatchers("/api/me").permitAll()  
-                                        .anyRequest().authenticated()
+                                // allow preflight
+                                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+
+                                // allow oauth/login endpoints
+                                .requestMatchers("/welcome", "/oauth2/**", "/login/**").permitAll()
+
+                                // ✅ allow the frontend to call /api/me (controller returns 200/401)
+                                .requestMatchers("/api/me").permitAll()
+
+                                // everything else protected
+                                .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 ->
                         oauth2.userInfoEndpoint(info -> info
