@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -33,23 +34,20 @@ public class AuthController {
         this.clientMapper = clientMapper;
     }
 
-    @GetMapping(path = "/api/me")
+    @GetMapping("/api/me")
     public ResponseEntity<?> me(Authentication authentication) {
-
-        if(authentication != null && authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof ClientPrincipal clientPrincipal) {
-
-                Optional<ClientEntity> client = clientService.findClientWithUUID(clientPrincipal.getClientUUID());
-
-                return client.map(clientEntity -> {
-                    ClientDto clientDto = clientMapper.mapTo(clientEntity);
-                    return new ResponseEntity<>(clientDto, HttpStatus.OK);
-                }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-            }
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof ClientPrincipal clientPrincipal) {
+            return clientService.findClientWithUUID(clientPrincipal.getClientUUID())
+                .map(client -> ResponseEntity.ok(clientMapper.mapTo(client)))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 
