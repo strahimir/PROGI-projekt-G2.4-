@@ -66,15 +66,15 @@ CREATE TABLE listing (
     equipmentcondition VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE listing_address (
-    listinguuid UUID NOT NULL REFERENCES listing(listinguuid) ON DELETE CASCADE,
+CREATE TABLE address (
+    addressuuid UUID PRIMARY KEY,
+    listingaddressuuid UUID UNIQUE NOT NULL REFERENCES listing(listinguuid) ON DELETE CASCADE,
     coordinates GEOMETRY(POINT) NOT NULL,
     streetname VARCHAR(255) NOT NULL,
     streetnumber VARCHAR(10) NOT NULL CHECK (streetnumber ~ '^[0-9]+[A-Za-z]?$'),
     aptnumber VARCHAR(10) DEFAULT NULL,
-    postalcode VARCHAR(15) NOT NULL REFERENCES city(postalcode) ON DELETE RESTRICT,
-    countycode VARCHAR(10) NOT NULL REFERENCES county(countycode) ON DELETE RESTRICT,
-    PRIMARY KEY (listinguuid, coordinates)
+    listingpostalcode VARCHAR(15) NOT NULL REFERENCES city(postalcode) ON DELETE RESTRICT,
+    listingcountrycode VARCHAR(10) NOT NULL REFERENCES county(countycode) ON DELETE RESTRICT
 );
 
 CREATE TABLE rental (
