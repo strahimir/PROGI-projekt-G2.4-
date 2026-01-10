@@ -19,7 +19,6 @@ public class ClientPrincipal implements OAuth2User, UserDetails {
     private String email;
     private String firstName;
     private String lastName;
-    private Boolean isSuspended;
     private String provider;
     private String providerId;
     private Map<String, Object> attributes;
@@ -30,7 +29,6 @@ public class ClientPrincipal implements OAuth2User, UserDetails {
                            String email,
                            String firstName,
                            String lastName,
-                           Boolean isSuspended,
                            String provider,
                            String providerId) {
         this.username = username;
@@ -38,7 +36,6 @@ public class ClientPrincipal implements OAuth2User, UserDetails {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isSuspended = isSuspended;
         this.provider = provider;
         this.providerId = providerId;
     }
@@ -51,7 +48,6 @@ public class ClientPrincipal implements OAuth2User, UserDetails {
                 client.getEmail(),
                 client.getFirstName(),
                 client.getLastName(),
-                client.getIsSuspended(),
                 client.getProvider(),
                 client.getProviderId()
         );
@@ -89,23 +85,23 @@ public class ClientPrincipal implements OAuth2User, UserDetails {
         return clientUUID.toString();
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return !isSuspended;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return !isSuspended;
-    }
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return !isSuspended;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return !isSuspended;
+//    }
 }

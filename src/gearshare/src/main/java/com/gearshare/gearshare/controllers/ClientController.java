@@ -26,7 +26,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @PostMapping
     public ResponseEntity<ClientDto> createClient(@RequestBody ClientDto client) {
         ClientEntity clientEntity = clientMapper.mapFrom(client);

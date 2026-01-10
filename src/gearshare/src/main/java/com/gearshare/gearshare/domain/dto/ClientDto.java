@@ -25,20 +25,13 @@ public class ClientDto {
 
     private String phoneNumber;
 
-    private Boolean isSuspended;
-
-    private Integer suspensionLength;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime suspensionStartDateTime;
-
     private Date dateJoined;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime subscriptionStartDateTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime subscriptionEndDateTime;
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//    private LocalDateTime subscriptionStartDateTime;
+//
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//    private LocalDateTime subscriptionEndDateTime;
 
     private String firstName;
 
@@ -47,6 +40,10 @@ public class ClientDto {
     private String providerId;
 
     private String provider;
+
+    private int reportCount;
+
+    private String role;
 
 
 }
