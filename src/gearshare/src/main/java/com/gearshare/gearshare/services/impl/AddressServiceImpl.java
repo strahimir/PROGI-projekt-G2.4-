@@ -31,7 +31,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressEntity> findAddressFromListing(UUID listingUUID) {
+    public Optional<AddressEntity> findAddressFromListing(UUID listingUUID) {
         return addressRepository.findByListing_ListingUUID(listingUUID);
+    }
+
+    @Override
+    public List<AddressEntity> findAllAddressesFromCityInCountry(String postalCode, String countryCode) {
+        return addressRepository.findByListingPostalCodeAndListingCountryCode(postalCode, countryCode);
     }
 }

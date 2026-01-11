@@ -1,9 +1,7 @@
 package com.gearshare.gearshare.controllers;
 
 
-import ch.qos.logback.classic.LoggerContext;
 import com.gearshare.gearshare.domain.dto.AddressDto;
-import com.gearshare.gearshare.domain.dto.ListingDto;
 import com.gearshare.gearshare.domain.entities.AddressEntity;
 import com.gearshare.gearshare.mappers.Mapper;
 import com.gearshare.gearshare.services.AddressService;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/listings")
@@ -32,7 +31,7 @@ public class AddressController {
         this.addressMapper = addressMapper;
     }
 
-    @PostMapping( path = "/{listingUUID}")
+    @PostMapping(path = "/{listingUUID}/address")
     public ResponseEntity<AddressDto> createAddress(@RequestBody AddressDto address,
                                                     @PathVariable("listingUUID") UUID listingUUID) {
         AddressEntity addressEntity = addressMapper.mapFrom(address);
@@ -40,27 +39,46 @@ public class AddressController {
         return new ResponseEntity<>(addressMapper.mapTo(savedAddressEntity), HttpStatus.CREATED);
     }
 
-    @GetMapping( path = "/{listingUUID}/address")
-    public ResponseEntity<AddressDto> getAddressByListingUUID( @PathVariable("listingUUID") UUID listingUUID ){
-        List<AddressEntity> addressEntity = addressService.findAddressFromListing(listingUUID);
-        if(addressEntity.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(addressMapper.mapTo(addressEntity.get(0)), HttpStatus.OK);
+    @GetMapping(path = "/{listingUUID}/address")
+    public ResponseEntity<AddressDto> getAddressByListingUUID(@PathVariable("listingUUID") UUID listingUUID) {
+        Optional<AddressEntity> address = addressService.findAddressFromListing(listingUUID);
+        return address
+                .map(
+                        addressEntity -> new ResponseEntity<>(addressMapper.mapTo(addressEntity), HttpStatus.OK)
+                )
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping( path = "/{listingUUID}/address")
+    @PutMapping(path = "/{listingUUID}/address")
     public ResponseEntity<AddressDto> fullUpdateAddress(
             @PathVariable("listingUUID") UUID listingUUID,
             @RequestBody AddressDto address
-    ){
+    ) {
 
-        if( !listingService.exists(listingUUID))
+        if (!listingService.exists(listingUUID))
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         AddressEntity addressEntity = addressMapper.mapFrom(address);
         AddressEntity savedAddressEntity = addressService.createOrUpdateAddress(addressEntity, listingUUID);
 
         return new ResponseEntity<>(addressMapper.mapTo(savedAddressEntity), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/city/{postalCode}-{countryCode}")
+    public ResponseEntity<List<AddressDto>> getListingsByCity(
+            @PathVariable("postalCode") String postalCode,
+            @PathVariable("countryCode") String countryCode
+    ) {
+
+        List<AddressEntity> addressEntities = addressService.findAllAddressesFromCityInCountry(postalCode, countryCode);
+
+        List<AddressDto> addressDtos =
+                addressEntities
+                        .stream()
+                        .map(addressMapper::mapTo)
+                        .collect(Collectors.toList());
+
+        return new ResponseEntity<>(addressDtos, HttpStatus.OK);
     }
 
 }

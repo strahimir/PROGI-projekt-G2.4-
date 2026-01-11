@@ -7,7 +7,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface AddressService {
+
     AddressEntity createOrUpdateAddress(AddressEntity addressEntity, UUID listingUUID);
 
-    List<AddressEntity> findAddressFromListing(UUID listingUUID);
+    Optional<AddressEntity> findAddressFromListing(UUID listingUUID);
+
+    List<AddressEntity> findAllAddressesFromCityInCountry(String postalCode, String countryCode);
+
 }
